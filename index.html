@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Task Manager</title>
-
 </head>
 
 <body id="page"
@@ -14,6 +13,7 @@
 
   <section class="w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-7">
 
+    <!-- HEADER -->
     <div class="flex justify-between items-center mb-8">
 
       <div>
@@ -27,62 +27,89 @@
       </div>
 
       
-
       <div class="flex flex-col items-center gap-2">
-  
-  
-  <label class="w-18 h-8 rounded-2xl bg-slate-900 flex items-center p-1 cursor-pointer select-none relative group hover:scale-105 transition">
-    <input id="darkBtn" type="checkbox" class="sr-only peer">
-    <span class="w-6 h-6 rounded-xl bg-white shadow-md transform transition-transform duration-300 ease-in-out peer-checked:translate-x-11 z-10"></span>
-  </label>
 
-  
-  <p class="font-semibold">
-    Dark Mode
-  </p>
-  
-</div>
+        <label
+          class="w-18 h-8 rounded-2xl bg-slate-900 flex items-center p-1 cursor-pointer select-none relative group hover:scale-105 transition">
 
+          <input id="darkBtn" type="checkbox" class="sr-only peer">
+
+          <span
+            class="w-6 h-6 rounded-xl bg-white shadow-md transform transition-transform duration-300 ease-in-out peer-checked:translate-x-11 z-10">
+          </span>
+
+        </label>
+
+        <p class="font-semibold">
+          Dark Mode
+        </p>
+
+      </div>
 
     </div>
+
+    
     <div class="flex flex-col sm:flex-row gap-4 mb-7">
 
-      <input id="newTask" type="text" placeholder="Escribe una tarea..."
-        class="flex-1 border border-slate-300 p-4 rounded-2xl outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-300 transition">
+      <input
+        id="newTask"
+        type="text"
+        placeholder="Escribe una tarea..."
+        class="flex-1 border border-slate-300 p-4 rounded-2xl outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-300 transition"
+      >
 
-      <button id="createTask" type="button"
-        class="bg-cyan-600 hover:bg-cyan-700 text-white px-6 rounded-2xl font-semibold transition cursor-pointer">
+      <button
+        id="createTask"
+        type="button"
+        class="bg-cyan-600 hover:bg-cyan-700 text-white px-6 rounded-2xl font-semibold transition cursor-pointer"
+      >
         Crear
       </button>
 
     </div>
 
+    
     <div class="mb-6">
 
-      <input id="searchTask" type="text" placeholder="Buscar tarea..."
-        class="w-full border border-slate-300 p-4 rounded-2xl outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-300 transition">
+      <input
+        id="searchTask"
+        type="text"
+        placeholder="Buscar tarea..."
+        class="w-full border border-slate-300 p-4 rounded-2xl outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-300 transition"
+      >
 
     </div>
 
-
+   
     <div class="flex flex-wrap gap-3 mb-7">
 
-      <button class="task-filter bg-slate-200 hover:bg-slate-300 px-5 py-2 rounded-xl font-medium transition"
-        data-status="all">
+      <button
+        id="allBtn"
+        type="button"
+        class="bg-slate-200 hover:bg-slate-300 px-5 py-2 rounded-xl font-medium transition"
+      >
         Todas
       </button>
 
-      <button class="task-filter bg-orange-200 hover:bg-orange-300 px-5 py-2 rounded-xl font-medium transition"
-        data-status="active">
+      <button
+        id="activeBtn"
+        type="button"
+        class="bg-orange-200 hover:bg-orange-300 px-5 py-2 rounded-xl font-medium transition"
+      >
         Activas
       </button>
 
-      <button class="task-filter bg-emerald-200 hover:bg-emerald-300 px-5 py-2 rounded-xl font-medium transition"
-        data-status="done">
+      <button
+        id="completedBtn"
+        type="button"
+        class="bg-emerald-200 hover:bg-emerald-300 px-5 py-2 rounded-xl font-medium transition"
+      >
         Finalizadas
       </button>
 
     </div>
+
+   
     <div class="mb-5">
 
       <span id="tasksInfo" class="text-slate-500 font-medium">
@@ -91,23 +118,24 @@
 
     </div>
 
+   
     <ul id="tasksContainer" class="space-y-4"></ul>
 
-      <div id="emptyMessage" class="hidden text-center py-10">
+    <div id="emptyMessage" class="hidden text-center py-10">
 
-        <h2 class="text-2xl font-bold text-slate-400 mb-2">
-          No hay tareas todavía
-        </h2>
+      <h2 class="text-2xl font-bold text-slate-400 mb-2">
+        No hay tareas todavía
+      </h2>
 
-        <p class="text-slate-500">
-          Agrega una nueva tarea para empezar
-        </p>
+      <p class="text-slate-500">
+        Agrega una nueva tarea para empezar
+      </p>
 
-      </div>
+    </div>
 
   </section>
 
   <script type="module" src="/src/main.js"></script>
-</body>
 
+</body>
 </html>
