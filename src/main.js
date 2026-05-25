@@ -2,9 +2,9 @@ import './style.css'
 
 const API = "http://localhost:3000/tasks";
 
-// ========================
-// ELEMENTOS HTML
-// ========================
+
+// aqui se definen todos los elementos HTML 
+
 const tasksContainer = document.getElementById("tasksContainer");
 const newTask = document.getElementById("newTask");
 const createTaskBtn = document.getElementById("createTask");
@@ -18,9 +18,9 @@ const emptyMessage = document.getElementById("emptyMessage");
 
 const searchTask = document.getElementById("searchTask");
 
-// ========================
+
 // ESTADOS GLOBALES
-// ========================
+
 let allTasks = [];
 
 let currentFilter = sessionStorage.getItem("filter") || "all";
@@ -32,9 +32,8 @@ searchTask.value = searchValue;
 
 
 
-// ========================
-// SEARCH (SESSION STORAGE)
-// ========================
+// SEARCH con el sessionStorage
+
 searchTask.addEventListener("input", (e) => {
     searchValue = e.target.value.toLowerCase();
 
@@ -43,9 +42,9 @@ searchTask.addEventListener("input", (e) => {
     applyFilter();
 });
 
-// ========================
-// GET TASKS
-// ========================
+
+// obtener tareas
+
 async function getTasks() {
 
     const response = await fetch(API);
@@ -56,9 +55,9 @@ async function getTasks() {
     applyFilter();
 }
 
-// ========================
+
 // RENDER TASKS
-// ========================
+
 function renderTasks(tasks) {
 
     tasksContainer.innerHTML = "";
