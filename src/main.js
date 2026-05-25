@@ -1,9 +1,10 @@
-import './style.css'
+import './style.css' // importacion del archivo css ya que usamos vite
 
-const API = "http://localhost:3000/tasks";
+const API = "http://localhost:3000/tasks"; // aqui se almacena la URL de la API
 
 
-// aqui se definen todos los elementos HTML 
+// aqui se definen todos los elementos HTML y los busca por su ID para poder manipularlo
+// DOM
 
 const tasksContainer = document.getElementById("tasksContainer");
 const newTask = document.getElementById("newTask");
@@ -19,22 +20,34 @@ const emptyMessage = document.getElementById("emptyMessage");
 const searchTask = document.getElementById("searchTask");
 
 
-// ESTADOS GLOBALES
+// ESTADOS GLOBALES: es la informacion que la 
+// aplicacion necesita recordar mientras se ejecuta(tareas, filtro, barra de busqueda)
+// es global porque varias funciones necesitan la info
 
-let allTasks = [];
+let allTasks = []; // guarda todas las tareas
 
-let currentFilter = sessionStorage.getItem("filter") || "all";
+let currentFilter = sessionStorage.getItem("filter") || "all"; // almacena el filtro actual(all, active, completed)
 
-let searchValue = sessionStorage.getItem("search") || "";
+let searchValue = sessionStorage.getItem("search") || ""; // Guarda la informacion que el usuario escribe en busqueda
 
-// restaurar input de búsqueda
+// son una variables globales por eso se declaran fuera 
+// de cualquier funcion, pero casi todas las funciones las utilizan
+
+// restaura la informacion que habia en la barra de busqueda 
+// recuerda la busqueda
 searchTask.value = searchValue;
 
 
 
-// SEARCH con el sessionStorage
+// SEARCH con el sessionStorage: este bloque permite buscar 
+// tareas en tiempo real, se guarde la busqueda y que 
+// el filtro se actualice autimaticamente
 
-searchTask.addEventListener("input", (e) => {
+// se ejecuta cada vez que el usuario escriba, 
+// pero como es input y no click, se ejecuta al escribir, 
+// borrar o pegar texto
+searchTask.addEventListener("input", (e) => { 
+//
     searchValue = e.target.value.toLowerCase();
 
     sessionStorage.setItem("search", searchValue);
@@ -105,9 +118,9 @@ function renderTasks(tasks) {
     });
 }
 
-// ========================
+
 // APPLY FILTER
-// ========================
+
 function applyFilter() {
 
     let tasks = [...allTasks];
@@ -128,9 +141,9 @@ function applyFilter() {
     renderTasks(tasks);
 }
 
-// ========================
+
 // CREATE TASK
-// ========================
+
 async function createTask(title) {
 
     const response = await fetch(API);
@@ -157,9 +170,9 @@ async function createTask(title) {
     getTasks();
 }
 
-// ========================
+
 // DELETE TASK
-// ========================
+
 async function deleteTask(id) {
 
     await fetch(`${API}/${id}`, {
@@ -169,9 +182,9 @@ async function deleteTask(id) {
     getTasks();
 }
 
-// ========================
+
 // COMPLETE TASK
-// ========================
+
 async function toggleTask(id, completed) {
 
     await fetch(`${API}/${id}`, {
@@ -187,9 +200,9 @@ async function toggleTask(id, completed) {
     getTasks();
 }
 
-// ========================
+
 // CREAR TAREA
-// ========================
+
 createTaskBtn.addEventListener("click", () => {
 
     const title = newTask.value.trim();
@@ -201,9 +214,9 @@ createTaskBtn.addEventListener("click", () => {
     newTask.value = "";
 });
 
-// ========================
+
 // FILTROS
-// ========================
+
 allBtn.addEventListener("click", () => {
     currentFilter = "all";
     sessionStorage.setItem("filter", currentFilter);
@@ -222,13 +235,13 @@ completedBtn.addEventListener("click", () => {
     applyFilter();
 });
 
-// ========================
+
 // FUNCIONES GLOBALES
-// ========================
+
 window.deleteTask = deleteTask;
 window.toggleTask = toggleTask;
 
-// ========================
+
 // INIT
-// ========================
+
 getTasks();
