@@ -16,7 +16,7 @@ const completedBtn = document.getElementById("completedBtn");
 const tasksInfo = document.getElementById("tasksInfo");
 const emptyMessage = document.getElementById("emptyMessage");
 
-const searchTask = document.getElementById("searchTask")
+const searchTask = document.getElementById("searchTask");
 
 // ========================
 // ESTADOS GLOBALES
@@ -27,11 +27,13 @@ let currentFilter = sessionStorage.getItem("filter") || "all";
 
 let searchValue = sessionStorage.getItem("search") || "";
 
-// 🔥 restaurar input visualmente
+// restaurar input de búsqueda
 searchTask.value = searchValue;
 
+
+
 // ========================
-// EVENTO BUSCADOR (CON STORAGE)
+// SEARCH (SESSION STORAGE)
 // ========================
 searchTask.addEventListener("input", (e) => {
     searchValue = e.target.value.toLowerCase();
@@ -201,49 +203,25 @@ createTaskBtn.addEventListener("click", () => {
 });
 
 // ========================
-// FILTRO TODAS
+// FILTROS
 // ========================
-if (allBtn) {
+allBtn.addEventListener("click", () => {
+    currentFilter = "all";
+    sessionStorage.setItem("filter", currentFilter);
+    applyFilter();
+});
 
-    allBtn.addEventListener("click", () => {
+activeBtn.addEventListener("click", () => {
+    currentFilter = "active";
+    sessionStorage.setItem("filter", currentFilter);
+    applyFilter();
+});
 
-        currentFilter = "all";
-
-        sessionStorage.setItem("filter", currentFilter);
-
-        applyFilter();
-    });
-}
-
-// ========================
-// FILTRO ACTIVAS
-// ========================
-if (activeBtn) {
-
-    activeBtn.addEventListener("click", () => {
-
-        currentFilter = "active";
-
-        sessionStorage.setItem("filter", currentFilter);
-
-        applyFilter();
-    });
-}
-
-// ========================
-// FILTRO FINALIZADAS
-// ========================
-if (completedBtn) {
-
-    completedBtn.addEventListener("click", () => {
-
-        currentFilter = "completed";
-
-        sessionStorage.setItem("filter", currentFilter);
-
-        applyFilter();
-    });
-}
+completedBtn.addEventListener("click", () => {
+    currentFilter = "completed";
+    sessionStorage.setItem("filter", currentFilter);
+    applyFilter();
+});
 
 // ========================
 // FUNCIONES GLOBALES
